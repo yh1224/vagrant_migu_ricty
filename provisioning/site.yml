@@ -1,0 +1,23 @@
+---
+- hosts: vagrant
+  become: true
+  user: vagrant
+  vars:
+    zoneinfo_path: /usr/share/zoneinfo/Asia/Tokyo
+  tasks:
+    - name: set LANG
+      lineinfile: >
+        dest=/etc/locale.conf
+        regexp='LANG=.*'
+        line='LANG="ja_JP.UTF-8"'
+    - name: set localtime
+      file: >
+        src={{zoneinfo_path}}
+        dest=/etc/localtime
+        state=link
+        force=yes
+
+    - name: install git
+      yum: name=git state=present
+    - name: install fontforge
+      yum: name=fontforge state=present
