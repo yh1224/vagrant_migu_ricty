@@ -19,5 +19,7 @@
 
     - name: install git
       yum: name=git state=present
+    - name: install cvs
+      yum: name=cvs state=present
     - name: install fontforge
       yum: name=fontforge state=present
