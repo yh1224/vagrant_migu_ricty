@@ -26,7 +26,7 @@ fi
 cd ${TMPDIR}
 if [ -d "mplus_outline_fonts" ]; then
   echo "--> Updating mplus_outline_fonts..."
-  (cd mplus_outline_fonts && cvs -q update -d) || exit 1
+  (cd mplus_outline_fonts && cvs -q update -dPC) || exit 1
 else
   echo "--> Checking out mplus_outline_fonts..."
   cvs -q -d :pserver:anonymous@cvs.osdn.jp:/cvsroot/mplus-fonts checkout mplus_outline_fonts || exit 1
@@ -35,7 +35,7 @@ fi
 # Checkout the patches for Migu
 if [ -d "mixfont-mplus-ipa" ]; then
   echo "--> Updating mixfont-mplus-ipa..."
-  (cd mixfont-mplus-ipa && cvs -q update -d) || exit 1
+  (cd mixfont-mplus-ipa && cvs -q update -dPC) || exit 1
 else
   echo "--> Checking out mixfont-mplus-ipa..."
   cvs -q -d :pserver:anonymous@cvs.osdn.jp:/cvsroot/mix-mplus-ipa checkout mixfont-mplus-ipa || exit 1
