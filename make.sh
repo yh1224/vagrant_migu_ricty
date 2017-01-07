@@ -6,12 +6,12 @@ LOGFILE=${FONTDIR}/build_`date +%Y%m%d_%H%M%S`.log
 mkdir ${FONTDIR} ${TMPDIR} 2>/dev/null
 
 # Download Inconsolata
-if [ ! -e "${FONTDIR}/Inconsolata-Regular.ttf" -o ! -e "${FONTDIR}/Inconsolata-Bold.ttf" ]; then
+if [ ! -e "${TMPDIR}/Inconsolata-Regular.ttf" -o ! -e "${TMPDIR}/Inconsolata-Bold.ttf" ]; then
   echo "--> Getting Inconsolata font..."
   curl -L https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Regular.ttf \
-    -o ${FONTDIR}/Inconsolata-Regular.ttf || exit 1
+    -o ${TMPDIR}/Inconsolata-Regular.ttf || exit 1
   curl -L https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Bold.ttf \
-    -o ${FONTDIR}/Inconsolata-Bold.ttf || exit 1
+    -o ${TMPDIR}/Inconsolata-Bold.ttf || exit 1
 fi
 
 # Download Ricty script
@@ -54,7 +54,7 @@ fi
 cd ${TMPDIR}/ricty
 if [ ! -e "${FONTDIR}/Ricty-Regular.ttf" ]; then
   echo "--> Building Ricty fonts..."
-  sh ricty_generator.sh ${FONTDIR}/Inconsolata-{Regular,Bold}.ttf ${FONTDIR}/migu-1m-{regular,bold}.ttf | tee -a ${LOGFILE} 2>&1
+  sh ricty_generator.sh ${TMPDIR}/Inconsolata-{Regular,Bold}.ttf ${FONTDIR}/migu-1m-{regular,bold}.ttf | tee -a ${LOGFILE} 2>&1
   sh os2version_reviser.sh Ricty*.ttf
   cp Ricty*.ttf ${FONTDIR}
 fi
