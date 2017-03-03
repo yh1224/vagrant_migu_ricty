@@ -5,12 +5,12 @@ Vagrant.configure(2) do |config|
 
   # Enable proxy
   if Vagrant.has_plugin?("vagrant-proxyconf")
-    if ENV['HTTP_PROXY'] || ENV['HTTPS_PROXY']
-      config.proxy.http     = ENV['HTTP_PROXY']
-      config.proxy.https    = ENV['HTTPS_PROXY']
-      config.proxy.no_proxy = "localhost,127.0.0.1,"
-      if ENV['NO_PROXY']
-        config.proxy.no_proxy += "," + ENV['NO_PROXY']
+    if ENV["HTTP_PROXY"] || ENV["HTTPS_PROXY"] || ENV["http_proxy"] || ENV["https_proxy"]
+      config.proxy.http     = ENV["HTTP_PROXY"] || ENV["http_proxy"]
+      config.proxy.https    = ENV["HTTPS_PROXY"] || ENV["https_proxy"]
+      config.proxy.no_proxy = "localhost,127.0.0.1"
+      if ENV["NO_PROXY"] || ENV["no_proxy"]
+        config.proxy.no_proxy += "," + (ENV["NO_PROXY"] || ENV["no_proxy"])
       end
     end
   end
