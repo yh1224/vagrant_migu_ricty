@@ -35,6 +35,9 @@ Vagrant.configure(2) do |config|
 
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
 
-  config.vm.provision "shell", :path => "provision.sh"
+  config.vm.provision "ansible_local" do |ansible|
+    ansible.playbook = "provision/default.yml"
+    #ansible.verbose = "-vvv"
+  end
 
 end

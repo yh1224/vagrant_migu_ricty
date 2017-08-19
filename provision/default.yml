@@ -1,0 +1,16 @@
+---
+- hosts: default
+  become: true
+
+  tasks:
+    - name: set LANG
+      lineinfile: dest=/etc/locale.conf regexp='LANG=.*' line='LANG="ja_JP.UTF-8"'
+    - name: set localtime
+      file: src=/usr/share/zoneinfo/Asia/Tokyo dest=/etc/localtime state=link force=yes
+
+    - name: install packages
+      yum: name={{ item }} state=present
+      with_items:
+        - cvs
+        - git
+        - fontforge
