@@ -15,7 +15,7 @@ Vagrant.configure(2) do |config|
     end
   end
 
-  config.vm.box = "centos/7"
+  config.vm.box = "debian/jessie64"
 
   config.vm.provider :virtualbox do |vbox|
     #vbox.cpus = 2
@@ -31,7 +31,7 @@ Vagrant.configure(2) do |config|
     ]
   end
 
-  config.vm.hostname = "centos"
+  config.vm.hostname = "debian"
 
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
 

@@ -8,9 +8,13 @@
 
         $ vagrant up
 
- 4. Build
+ 4. Make fonts
 
         $ vagrant ssh
         [vagrant@centos ~]$ /vagrant/make.sh
 
-Now you get fonts in fonts/ directory.
+    You will get fonts in fonts/ directory.
+
+ 5. Cleanup
+
+        $ vagrant destroy
